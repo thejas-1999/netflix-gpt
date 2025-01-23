@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <div>
       <div className="absolute">
@@ -14,7 +14,12 @@ const Login = () => {
         action=""
         className="w-3/12 absolute p-12 m-12 bg-black/85 mt-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-50"
       >
-        <h1 className=" font-bold text-3xl py-4">Sign In</h1>
+        <h1 className=" font-bold text-3xl py-4">Sign Up</h1>
+        <input
+          type="text"
+          placeholder="Name"
+          className="p-4 my-4 w-full border border-gray-600 rounded-l "
+        />
         <input
           type="text"
           placeholder="Email"
@@ -25,14 +30,14 @@ const Login = () => {
           placeholder="Password"
           className="p-4 my-4  w-full border border-gray-600 rounded-l "
         />
-        <button className="p-6 my-6 bg-red-700 w-full rounded-lg cursor-pointer ">
-          Sign In
+        <button className="p-6 my-6 bg-red-700 w-full rounded-lg cursor-pointer">
+          Sign Up
         </button>
         <p className="py-4">
-          New to Netflix? <Link to="/signup">Sign up now.</Link>
+          Already have a account?<Link to="/"> Sign in now.</Link>
         </p>
       </form>
     </div>
   );
 };
-export default Login;
+export default SignUp;
