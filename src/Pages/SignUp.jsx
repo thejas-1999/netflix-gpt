@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import { checkValidation } from "../utils/Validate";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -16,6 +20,29 @@ const SignUp = () => {
     );
 
     setErrorMessage(message);
+
+    if (!message) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+
+          console.log(user);
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+          console.log(error);
+          // ..
+        });
+    }
   };
 
   return (
